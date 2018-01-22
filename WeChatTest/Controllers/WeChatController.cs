@@ -38,7 +38,7 @@ namespace WeChatTest.Controllers
         {
             string code = Request["code"];
             string url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + OPENAPPID + "&secret=" + OPENAPPSECRET + "&code=" + code + "&grant_type=authorization_code";
-            var json=Tools.WebClientHelper.GetJson(url);
+            var json=YZL.Code.WebClientHelper.GetJson(url);
             return json;
             //{"access_token":"6_N9JWt9ZLF436SypVUm5RHbHuXEF3q0y8T7FuS6m0jcybiYe9Ak30kFN1FhSDNY6YRkWMhGFidqiLhXXMYya9HA","expires_in":7200,"refresh_token":"6_eiLYlUDxLteqGj75YLaKp1tRahPr8RT0zRFteCZr2lg3XTHaxLWWSXBJA59C6WpdpH57DTpCgtH0QYfLxsTA7w","openid":"oytpc1iyCUIyyRmwQ3YyOKjy7zb0","scope":"snsapi_login","unionid":"olXI31FSDlXFyCW-vxjtLNYVDRJc"}
         }

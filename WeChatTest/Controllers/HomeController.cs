@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json.Linq;
+using YZL.Code;
+using YZL.Code.WeChat;
 
 namespace WeChatTest.Controllers
 {
-    public class TModel
-    {
-        public string Name { get; set; }
-        public string Address { get; set; }
-    }
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -18,20 +16,12 @@ namespace WeChatTest.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public void UpdateFansList()
         {
-            TModel model = new TModel() { Name = "123", Address = "456" };
-            var ss = EasyDotNet.Utility.XmlHelper.Serializer(typeof(TModel), model);
-            ViewBag.Message = ss;
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            //string fansUrl = $"https://api.weixin.qq.com/cgi-bin/user/info/batchget?access_token=6_8TJ_Q6AaZf33QvAwMpPcxpnkDlVyg-1_oXvuZCnCtMaBaIav892uEVmzqd1mILfD6-PwKhOEpQIW-3a8sCvTrMOL2lLSwwEkAFdmouABSFpkL0sfU1WkDvPCJRrdw_XYkroTboxG5Dd-ncp7EGPbAFAHJS";
+            //string json = WebClientHelper.GetJson(fansUrl);
+            //JObject jObj = JObject.Parse(json);
+            var ss = new UserManager().GetUserInfos(new UserManager().GetFansOpenIdList());
         }
     }
 }
