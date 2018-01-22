@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WeChat\ReceiveXmlPush.cs" />
     <Compile Include="WeChat\UserGet.cs" />
     <Compile Include="WeChat\UserInfo.cs" />
   </ItemGroup>

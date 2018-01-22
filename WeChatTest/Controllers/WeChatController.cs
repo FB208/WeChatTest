@@ -1,9 +1,13 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml;
+using System.Xml.Serialization;
+using YZL.Model.WeChat;
 
 namespace WeChatTest.Controllers
 {
@@ -27,9 +31,28 @@ namespace WeChatTest.Controllers
         }
         public string Verification()
         {
+            //此处应该有校验
             string echostr = Request["echostr"];
+
+
+            // 将解析结果存储在HashMap中
+            //Map<String, String> map = new HashMap<String, String>();
+            // 从request中取得输入流
+            using (Stream inputStream = Request.InputStream)
+            {
+                StreamReader reader = new StreamReader(inputStream);
+                XmlDocument xml = new XmlDocument();
+                xml.Load(reader);
+
+            
+                    
+            }
+            
+            
             return echostr;
         }
+
+        
         public string ShowCode()
         {
             return Request["code"];
