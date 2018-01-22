@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeChatTest", "WeChatTest\WeChatTest.csproj", "{23E718CD-4902-4A10-B856-26C974E00C1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YZL.Code", "YZL.Code\YZL.Code.csproj", "{64923099-8163-4D1D-82F3-261AE5A3778B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YZL.Model", "YZL.Model\YZL.Model.csproj", "{A79AE110-61D9-474B-8A5F-A9166084284F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{23E718CD-4902-4A10-B856-26C974E00C1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23E718CD-4902-4A10-B856-26C974E00C1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23E718CD-4902-4A10-B856-26C974E00C1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64923099-8163-4D1D-82F3-261AE5A3778B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64923099-8163-4D1D-82F3-261AE5A3778B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64923099-8163-4D1D-82F3-261AE5A3778B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64923099-8163-4D1D-82F3-261AE5A3778B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A79AE110-61D9-474B-8A5F-A9166084284F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A79AE110-61D9-474B-8A5F-A9166084284F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A79AE110-61D9-474B-8A5F-A9166084284F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A79AE110-61D9-474B-8A5F-A9166084284F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
