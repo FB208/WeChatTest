@@ -45,6 +45,13 @@ namespace YZL.Code.WeChat
             return openids;
         }
 
+        public UserInfo GetUserInfo(string openid)
+        {
+            string url = $"https://api.weixin.qq.com/cgi-bin/user/info?access_token={access_token}&openid={openid}&lang=zh_CN";
+            string json = WebClientHelper.GetJson(url);
+            UserInfo user = JsonConvert.DeserializeObject<UserInfo>(json);
+            return user;
+        }
 
         /// <summary>
         /// 批量取用户信息
