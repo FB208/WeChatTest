@@ -24,6 +24,8 @@ namespace YZL.Model.WeChat
         public string MsgType { get; set; }
         [XmlAttribute]
         public string Event { get; set; }
+
+        public string EventKey { get; set; }
         /// <summary>
         /// 创建时间的Datetime形式
         /// </summary>

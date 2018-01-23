@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Xml;
 using System.Xml.Serialization;
+using YZL.Code;
+using YZL.Code.WeChat;
 using YZL.Model.WeChat;
 
 namespace WeChatTest.Controllers
@@ -43,9 +45,51 @@ namespace WeChatTest.Controllers
                 StreamReader reader = new StreamReader(inputStream);
                 XmlDocument xml = new XmlDocument();
                 xml.Load(reader);
+                XmlElement root = xml.DocumentElement;
+                ReceiveXmlPush model = new ReceiveXmlPush()
+                {
+                    ToUserName = root.GetElementsByTagName("ToUserName").Item(0).InnerText,
+                    FromUserName =  root.GetElementsByTagName("FromUserName").Item(0)?.InnerText,
+                    CreateTime = Convert.ToInt64(root.GetElementsByTagName("CreateTime").Item(0)?.InnerText),
+                    MsgType = root.GetElementsByTagName("MsgType").Item(0)?.InnerText,
+                    Event = root.GetElementsByTagName("Event").Item(0)?.InnerText,
+                    EventKey= root.GetElementsByTagName("EventKey").Item(0)?.InnerText
 
-            
-                    
+                };
+                var cacheCreateTime = SystemCacheHelp.GetCache(model.FromUserName);
+                if (cacheCreateTime!=null&& cacheCreateTime.ToString()==model.CreateTime.ToString())
+                {
+                    //已经接收到相同请求并正在处理
+                    return echostr;
+                }
+                else
+                {
+                    SystemCacheHelp.SetCache(model.FromUserName, model.CreateTime, new TimeSpan(0, 0, 1, 0));
+                    switch (model.Event)
+                    {
+                        //关注
+                        case "subscribe":
+                        {
+                            new EventManager().FollowEvent(model);
+                        }break;
+                        //取消关注
+                        case "unsubscribe":
+                        {
+                            new EventManager().UnFollowEvent(model);
+                        }break;
+                        //点击菜单事件
+                        case "CLICK":
+                        {
+                            //return "<?xml version=\"1.0\" encoding=\"gb2312\"?><xml><ToUserName><![CDATA[ok7Pvv0bOpCqOp3jfVznkdcP1UGQ]]></ToUserName><FromUserName><![CDATA[gh_e93c814ce835]]></FromUserName><CreateTime>1516694789</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[qqq]]></Content></xml>";
+                            return new EventManager().ClickEvent(model);
+                        }break;
+                        default:break;
+                                ;
+                    }
+                }
+                
+
+
             }
             
             

@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace YZL.Code.WeChat
 {
     public class AccessToken
     {
+        string WXAPPID = ConfigHelper.GetConfigString("WXAPPID");
+        string WXAPPSECRET = ConfigHelper.GetConfigString("WXAPPSECRET");
         public string Get()
         {
-            return "6_8TJ_Q6AaZf33QvAwMpPcxpnkDlVyg-1_oXvuZCnCtMaBaIav892uEVmzqd1mILfD6-PwKhOEpQIW-3a8sCvTrMOL2lLSwwEkAFdmouABSFpkL0sfU1WkDvPCJRrdw_XYkroTboxG5Dd-ncp7EGPbAFAHJS";
+            string url = $"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={WXAPPID}&secret={WXAPPSECRET}";
+            string json = WebClientHelper.GetJson(url);
+            JObject jObj=JObject.Parse(json);
+            string access_token = jObj["access_token"].ToString();
+            return access_token;
         }
     }
 }
