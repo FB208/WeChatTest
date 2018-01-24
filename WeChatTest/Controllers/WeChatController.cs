@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Xml;
 using System.Xml.Serialization;
+using Newtonsoft.Json.Linq;
 using YZL.Code;
 using YZL.Code.WeChat;
 using YZL.Model.WeChat;
@@ -21,10 +22,11 @@ namespace WeChatTest.Controllers
         string OPENAPPID = "wx3b60f7793a678151";
         string OPENAPPSECRET = "5cdb18ba9730dadfa62067bac6b99252";
 
-        string CALLBACK_URL = "http://10086cc5.nat123.cc/WeChat/IsBind";
+        string CALLBACK_URL = "http://10086cc5.nat123.cc/WeChat/GetThisUser";
         public string GetQrCodeUrl()
         {
             string url = @"https://open.weixin.qq.com/connect/qrconnect?appid="+OPENAPPID+"&redirect_uri=" + CALLBACK_URL + "&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect";
+            Response.Redirect(url);
             return url;
         }
         public ActionResult Index()
@@ -104,11 +106,31 @@ namespace WeChatTest.Controllers
         public string IsBind()
         {
             string code = Request["code"];
-            string url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + OPENAPPID + "&secret=" + OPENAPPSECRET + "&code=" + code + "&grant_type=authorization_code";
-            var json=YZL.Code.WebClientHelper.GetJson(url);
-            return json;
+            AccessTokenOpen open = new AccessTokenOpen(code);
+            string access_token = open.Get();
+            string openid = open.OpenID();
+            
+            string getuserinfoUrl = $"https://api.weixin.qq.com/sns/userinfo?access_token={access_token}&openid={openid}";
+            var json2 = YZL.Code.WebClientHelper.GetJson(getuserinfoUrl);
+            //JObject jObj = JObject.Parse(json);
+            return json2;
             //{"access_token":"6_N9JWt9ZLF436SypVUm5RHbHuXEF3q0y8T7FuS6m0jcybiYe9Ak30kFN1FhSDNY6YRkWMhGFidqiLhXXMYya9HA","expires_in":7200,"refresh_token":"6_eiLYlUDxLteqGj75YLaKp1tRahPr8RT0zRFteCZr2lg3XTHaxLWWSXBJA59C6WpdpH57DTpCgtH0QYfLxsTA7w","openid":"oytpc1iyCUIyyRmwQ3YyOKjy7zb0","scope":"snsapi_login","unionid":"olXI31FSDlXFyCW-vxjtLNYVDRJc"}
         }
+
+        public JsonResult GetThisUser()
+        {
+            string code = Request["code"];
+            UserInfo user =new AccessTokenOpen(code).GetUserInfo();
+            return Json(user, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetUser()
+        {
+            string openid = "sdfw353rf";
+            UserInfo user = new UserManagerOpen().GetUserInfo(openid);
+            return Json(user, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult LoginOk()
         {
             return View();

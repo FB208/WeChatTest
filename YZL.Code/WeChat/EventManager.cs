@@ -48,11 +48,11 @@ namespace YZL.Code.WeChat
             smodel.Content = $"此消息来自开发服务器，您点击了按钮ID:{model.EventKey}";
 
             var xdoc = new XDocument(new XElement("xml",
-                new XElement("ToUserName", new XText(smodel.ToUserName)),
-                new XElement("FromUserName", new XText(smodel.FromUserName)),
+                new XElement("ToUserName", new XCData(smodel.ToUserName)),
+                new XElement("FromUserName", new XCData(smodel.FromUserName)),
                 new XElement("CreateTime", new XText(smodel.CreateTime.ToString())),
-                new XElement("MsgType", new XText(smodel.MsgType)),
-                new XElement("Content", new XText(smodel.Content))
+                new XElement("MsgType", new XCData(smodel.MsgType)),
+                new XElement("Content", new XCData(smodel.Content))
             ));
 
             return xdoc.ToString();

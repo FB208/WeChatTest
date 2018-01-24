@@ -9,6 +9,9 @@ namespace YZL.Model.WeChat
 {
     public class UserInfo
     {
+        /// <summary>
+        /// 用户是否订阅该公众号标识，值为0时，代表此用户没有关注该公众号，拉取不到其余信息
+        /// </summary>
         public int? subscribe { get; set; }
         public string openid { get; set; }
         public string nickname { get; set; }
@@ -43,5 +46,10 @@ namespace YZL.Model.WeChat
         /// 用户被打上的标签ID列表
         /// </summary>
         public List<string> tagid_list { get; set; }
+        /// <summary>
+        /// 开放平台独有 用户特权信息，json数组，如微信沃卡用户为（chinaunicom）
+        /// </summary>
+        public string[] privilege { get; set; }
+        public string privilege_ { get { return privilege.Length>0?string.Join(",", privilege):""; } }
     }
 }

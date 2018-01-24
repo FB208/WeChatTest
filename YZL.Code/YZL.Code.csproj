@@ -53,10 +53,12 @@
     <Compile Include="SystemCacheHelp.cs" />
     <Compile Include="WebClientHelper.cs" />
     <Compile Include="WeChat\AccessToken.cs" />
+    <Compile Include="WeChat\AccessTokenOpen.cs" />
     <Compile Include="WeChat\EventManager.cs" />
     <Compile Include="WeChat\MenuManager.cs" />
     <Compile Include="WeChat\MessageManager.cs" />
     <Compile Include="WeChat\UserManager.cs" />
+    <Compile Include="WeChat\UserManagerOpen.cs" />
     <Compile Include="XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -51,5 +51,7 @@ namespace WeChatTest.Controllers
             var ss = new EventManager().ClickEvent(model);
             return ss;
         }
+
+
     }
 }
