@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 using Newtonsoft.Json.Linq;
 using YZL.Code;
 using YZL.Code.WeChat;
-using YZL.Model.WeChat;
+using YZL.Models.WeChat;
 
 namespace WeChatTest.Controllers
 {

@@ -186,9 +186,9 @@
       <Project>{64923099-8163-4d1d-82f3-261ae5a3778b}</Project>
       <Name>YZL.Code</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YZL.Model\YZL.Model.csproj">
+    <ProjectReference Include="..\YZL.Model\YZL.Models.csproj">
       <Project>{a79ae110-61d9-474b-8a5f-a9166084284f}</Project>
-      <Name>YZL.Model</Name>
+      <Name>YZL.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

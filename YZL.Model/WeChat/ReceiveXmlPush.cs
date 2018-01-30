@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace YZL.Model.WeChat
+namespace YZL.Models.WeChat
 {
     /// <summary>
     /// 装载微信推送的xml的模型

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YZL.Model.WeChat
+namespace YZL.Models.WeChat
 {
     public class UserGet
     {

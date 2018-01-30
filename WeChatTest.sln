@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeChatTest", "WeChatTest\We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YZL.Code", "YZL.Code\YZL.Code.csproj", "{64923099-8163-4D1D-82F3-261AE5A3778B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YZL.Model", "YZL.Model\YZL.Model.csproj", "{A79AE110-61D9-474B-8A5F-A9166084284F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YZL.Models", "YZL.Model\YZL.Models.csproj", "{A79AE110-61D9-474B-8A5F-A9166084284F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

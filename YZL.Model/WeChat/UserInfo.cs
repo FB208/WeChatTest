@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-namespace YZL.Model.WeChat
+namespace YZL.Models.WeChat
 {
     public class UserInfo
     {

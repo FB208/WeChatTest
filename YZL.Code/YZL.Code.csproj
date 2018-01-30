@@ -65,9 +65,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\YZL.Model\YZL.Model.csproj">
+    <ProjectReference Include="..\YZL.Model\YZL.Models.csproj">
       <Project>{A79AE110-61D9-474B-8A5F-A9166084284F}</Project>
-      <Name>YZL.Model</Name>
+      <Name>YZL.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

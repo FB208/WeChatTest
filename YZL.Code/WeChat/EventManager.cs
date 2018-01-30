@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
-using YZL.Model.WeChat;
+using YZL.Models.WeChat;
 
 namespace YZL.Code.WeChat
 {
