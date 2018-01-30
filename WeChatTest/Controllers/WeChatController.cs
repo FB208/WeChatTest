@@ -6,10 +6,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using YZL.Code;
 using YZL.Code.WeChat;
+using YZL.Code.WeChat.Template;
 using YZL.Models.WeChat;
 
 namespace WeChatTest.Controllers
@@ -23,6 +26,10 @@ namespace WeChatTest.Controllers
         string OPENAPPSECRET = "5cdb18ba9730dadfa62067bac6b99252";
 
         string CALLBACK_URL = "http://10086cc5.nat123.cc/WeChat/GetThisUser";
+
+        //我的个人信息
+        //[{"subscribe":1,"openid":"ok7Pvv0bOpCqOp3jfVznkdcP1UGQ","nickname":"杨惠超","sex":1,"city":"河东","province":"天津","country":"中国","language":"zh_CN","headimgurl":"http://wx.qlogo.cn/mmopen/ajNVdqHZLLAs7JFeR2peoaXXA6nuq3icFfys5rInIvu5dsTkIpQLVDpdxd8ZWQndFrNHLbC1LOoZZhQeddWmLqQ/132","subscribe_time":1516689036,"unionid":"olXI31FSDlXFyCW-vxjtLNYVDRJc","remark":"","groupid":0,"tagid_list":[],"privilege":null,"privilege_":""}]
+        private const string myOpenId = "ok7Pvv0bOpCqOp3jfVznkdcP1UGQ";
         public string GetQrCodeUrl()
         {
             string url = @"https://open.weixin.qq.com/connect/qrconnect?appid="+OPENAPPID+"&redirect_uri=" + CALLBACK_URL + "&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect";
@@ -134,6 +141,57 @@ namespace WeChatTest.Controllers
         public ActionResult LoginOk()
         {
             return View();
+        }
+
+        public string SendMessage()
+        {
+            //var xdoc = new XDocument(new XElement("xml",
+            //    new XElement("touser", new XText(myOpenId)),
+            //    new XElement("template_id", new XText("ncyp1ir19iNPiyfswMw1KkZ7VYbA1Zbqe86bY_JTNPw")),
+            //    new XElement("url", new XText("http://pctest.cloudhvacr.com")),
+            //    new XElement("data", 
+            //        new XElement("first",
+            //            new XElement("value","假装有个报警"),
+            //            new XElement("color", "#173177")),
+            //        new XElement("keyword1",
+            //            new XElement("value", "2018/01/30"),
+            //            new XElement("color", "#173177")),
+            //        new XElement("keyword2",
+            //            new XElement("value", "实验室"),
+            //            new XElement("color", "#173177")),
+            //        new XElement("keyword3",
+            //            new XElement("value", "测试设备"),
+            //            new XElement("color", "#173177")),
+            //        new XElement("keyword4",
+            //            new XElement("value", "10-20"),
+            //            new XElement("color", "#173177")),
+            //        new XElement("keyword5",
+            //            new XElement("value", "25"),
+            //            new XElement("color", "#173177")),
+            //        new XElement("remark",
+            //            new XElement("value", "维修员：张三，联系方式：13811111111"),
+            //            new XElement("color", "#173177"))
+            //)));
+            ncyp1ir19iNPiyfswMw1KkZ7VYbA1Zbqe86bY_JTNPw model = new ncyp1ir19iNPiyfswMw1KkZ7VYbA1Zbqe86bY_JTNPw();
+            model.touser = myOpenId;
+            model.template_id = "ncyp1ir19iNPiyfswMw1KkZ7VYbA1Zbqe86bY_JTNPw";
+            model.url = "http://pctest.cloudhvacr.com";
+            model.miniprogram = null;
+            model.data=new Data()
+            {
+                first = new keyword() { value = "假装有个报警",color = "#173177" },
+                keyword1 = new keyword() { value = "2018/01/30", color = "#173177" },
+                keyword2 = new keyword() { value = "实验室", color = "#173177" },
+                keyword3 = new keyword() { value = "测试设备", color = "#173177" },
+                keyword4 = new keyword() { value = "10-20", color = "#173177" },
+                keyword5 = new keyword() { value = "25", color = "#173177" },
+                remark = new keyword() { value = "维修员：张三，联系方式：13811111111", color = "#173177" },
+            };
+            string postJson = JsonConvert.SerializeObject(model);
+            string access_token=new AccessToken().Get();
+            string url = $"https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={access_token}";
+            string json = WebClientHelper.PostJson(url, postJson);
+            return json;
         }
     }
 }

@@ -50,6 +50,6 @@ namespace YZL.Models.WeChat
         /// 开放平台独有 用户特权信息，json数组，如微信沃卡用户为（chinaunicom）
         /// </summary>
         public string[] privilege { get; set; }
-        public string privilege_ { get { return privilege.Length>0?string.Join(",", privilege):""; } }
+        public string privilege_ { get { return privilege!=null&&privilege.Length>0?string.Join(",", privilege):""; } }
     }
 }

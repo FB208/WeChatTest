@@ -57,6 +57,8 @@
     <Compile Include="WeChat\EventManager.cs" />
     <Compile Include="WeChat\MenuManager.cs" />
     <Compile Include="WeChat\MessageManager.cs" />
+    <Compile Include="WeChat\Template\ncyp1ir19iNPiyfswMw1KkZ7VYbA1Zbqe86bY_JTNPw.cs" />
+    <Compile Include="WeChat\Template\TemplateBase.cs" />
     <Compile Include="WeChat\UserManager.cs" />
     <Compile Include="WeChat\UserManagerOpen.cs" />
     <Compile Include="XmlHelper.cs" />
@@ -70,6 +72,7 @@
       <Name>YZL.Models</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

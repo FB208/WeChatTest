@@ -45,7 +45,7 @@ namespace YZL.Code.WeChat
             smodel.FromUserName = model.ToUserName;
             smodel.CreateTime = (int)(System.DateTime.Now.Ticks - new DateTime(1970, 1, 1, 0, 0, 0, 0).Ticks) / 10000;
             smodel.MsgType = "text";
-            smodel.Content = $"此消息来自开发服务器，您点击了按钮ID:{model.EventKey}";
+            smodel.Content = $"此消息来自开发服务器，您点击了按钮ID:{model.EventKey},id:{smodel.ToUserName}";
 
             var xdoc = new XDocument(new XElement("xml",
                 new XElement("ToUserName", new XCData(smodel.ToUserName)),
