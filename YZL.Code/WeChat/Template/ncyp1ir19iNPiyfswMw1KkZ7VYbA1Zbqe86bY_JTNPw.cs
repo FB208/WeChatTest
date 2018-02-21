@@ -15,11 +15,12 @@ namespace YZL.Code.WeChat.Template
     public class Data
     {
         public keyword first { get; set; }
-        public keyword keyword1 { get; set; }
-        public keyword keyword2 { get; set; }
-        public keyword keyword3 { get; set; }
-        public keyword keyword4 { get; set; }
-        public keyword keyword5 { get; set; }
+        //public keyword keyword1 { get; set; }
+        //public keyword keyword2 { get; set; }
+        //public keyword keyword3 { get; set; }
+        //public keyword keyword4 { get; set; }
+        //public keyword keyword5 { get; set; }
         public keyword remark { get; set; }
     }
+    //http://i.cloudhvacr.com/WeChat/Home/Verification
 }

@@ -180,14 +180,18 @@ namespace WeChatTest.Controllers
             model.data=new Data()
             {
                 first = new keyword() { value = "假装有个报警",color = "#173177" },
-                keyword1 = new keyword() { value = "2018/01/30", color = "#173177" },
-                keyword2 = new keyword() { value = "实验室", color = "#173177" },
-                keyword3 = new keyword() { value = "测试设备", color = "#173177" },
-                keyword4 = new keyword() { value = "10-20", color = "#173177" },
-                keyword5 = new keyword() { value = "25", color = "#173177" },
+                //keyword1 = new keyword() { value = "2018/01/30", color = "#173177" },
+                //keyword2 = new keyword() { value = "实验室", color = "#173177" },
+                //keyword3 = new keyword() { value = "测试设备", color = "#173177" },
+                //keyword4 = new keyword() { value = "10-20", color = "#173177" },
+                //keyword5 = new keyword() { value = "25", color = "#173177" },
                 remark = new keyword() { value = "维修员：张三，联系方式：13811111111", color = "#173177" },
             };
             string postJson = JsonConvert.SerializeObject(model);
+            JObject jObj = JObject.Parse(postJson);
+            jObj["data"]["first"].Parent.AddAfterSelf(new JProperty("keyword1", new JObject(new JProperty("value", "确定全文"), new JProperty("color", "#173177"))));
+            jObj["data"]["first"].Parent.AddAfterSelf(new JProperty("keyword2", new JObject(new JProperty("value", "确定全文"), new JProperty("color", "#173177"))));
+            var ss = jObj.ToString();
             string access_token=new AccessToken().Get();
             string url = $"https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={access_token}";
             string json = WebClientHelper.PostJson(url, postJson);
